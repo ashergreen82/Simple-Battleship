@@ -7,6 +7,8 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
+            string userName = GetUserInfo();
+
             // Setup the playing board
             Dictionary<string, string> gameBoard = GameBoardSetup();
 
@@ -29,6 +31,25 @@ namespace BattleShip
                 Console.WriteLine("NULL?  How the hell did you manage to return a NULL?");
             }
             */
+        }
+
+        public static string GetUserInfo()
+        {
+            do
+            {
+                Console.WriteLine("Hello! Welcome to Simple Battleship");
+                Console.Write("What is your name? ");
+                string userName = Console.ReadLine()!;
+                Console.WriteLine();
+
+                if (userName.Length > 0)
+                {
+                    Console.WriteLine($"Hello {userName}, let's get started");
+                    return userName;
+                }
+                
+            } while (true);
+            
         }
 
         public static Dictionary<string, string> GameBoardSetup()
