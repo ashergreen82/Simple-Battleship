@@ -7,30 +7,19 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
+            // Introduction and getting the user info
             string userName = GetUserInfo();
 
             // Setup the playing board
             Dictionary<string, string> gameBoard = GameBoardSetup();
 
-            //Display the gameboard
+            // Display the gameboard
             DisplayGameBoard(gameBoard);
-            Console.ReadLine();
-           
-            /*
-            string? keyboardInput = Console.ReadLine();
-            if (!String.IsNullOrEmpty(keyboardInput))
-            {
-                Console.WriteLine($"You typed: \"{keyboardInput}\". Good for you!  I am sooooo proud of you!");
-            }
-            else if (String.IsNullOrEmpty(keyboardInput))
-            {
-                Console.WriteLine("You didn't type anything, are you ok?  Is everything all right?");
-            }
-            else if (keyboardInput == null)
-            {
-                Console.WriteLine("NULL?  How the hell did you manage to return a NULL?");
-            }
-            */
+
+            // Ask for user input
+            string userInput = GetUserInput();
+            Console.WriteLine($"You entered: {userInput}");
+            
         }
 
         public static string GetUserInfo()
@@ -51,7 +40,34 @@ namespace BattleShip
             } while (true);
             
         }
+        public static string GetUserInput()
+        {
+            do
+            {
+                Console.WriteLine();
+                Console.Write("Please enter the Coordinates: ");
+                string userInput = Console.ReadLine()!;
+                Console.WriteLine();
 
+                if (userInput.Length > 0 && userInput.Length < 3)
+                {
+                    userInput = userInput.ToUpper();
+                    char character = userInput[0];
+                    int characterCheck = (int)character;
+                    int number;
+                    string CharacterNumber = userInput.Substring(1, 1);
+                    if (int.TryParse(CharacterNumber, out number))
+                    {
+                        if (characterCheck >= 65 && characterCheck <= 76 && number >= 0 && number <= 10)
+                        {
+                            return userInput;
+                        }
+                    }                   
+                }
+
+            } while (true);
+
+        }
         public static Dictionary<string, string> GameBoardSetup()
         {
             // Function body goes here
