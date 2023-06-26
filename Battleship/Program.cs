@@ -13,6 +13,10 @@ namespace BattleShip
             // Setup the playing board
             Dictionary<string, string> gameBoard = GameBoardSetup();
 
+            // Select a random coordinates for the location of the battleship
+            List<string> battleshipLocation = generateBattleshipLocation();
+            Console.WriteLine($"This is the location of the battleship: {string.Join(", ", battleshipLocation)}");
+
             // Display the gameboard
             DisplayGameBoard(gameBoard);
 
@@ -22,6 +26,36 @@ namespace BattleShip
             
         }
 
+        public static List<string> generateBattleshipLocation()
+        {
+            List<string> battleshipLocations = new List<string>();
+            Random rand = new Random();
+            int randomNumber = rand.Next(1, 11);
+            string randomLetter = ((char)rand.Next(65, 74)).ToString();
+            char randomCharacter = randomLetter[0];
+            string location = randomLetter + randomNumber.ToString();
+            //battleshipLocations.Add(location);
+            for (int i = 0; i < 4; i++)
+            {
+                    for (int k = randomNumber; k <= randomNumber + 4; k++)
+                    {
+                        // gameBoard.Add($"{Convert.ToChar(j)}{i}", "X");
+                        Console.WriteLine($"{randomLetter}{k}");
+                    }
+            }
+            /*for (int j = (int)randomCharacter; j <= (int)randomCharacter + 4; j++)
+                {
+                    for (int k = randomNumber; k <= randomNumber + 4; k++)
+                    {
+                        // gameBoard.Add($"{Convert.ToChar(j)}{i}", "X");
+                        Console.WriteLine($"{Convert.ToChar(j)}{k}");
+                    }
+                }*/
+            // string location = randomLetter + randomNumber.ToString();
+            battleshipLocations.Add(location);
+            return battleshipLocations;
+        }
+        
         public static string GetUserInfo()
         {
             do
@@ -49,16 +83,16 @@ namespace BattleShip
                 string userInput = Console.ReadLine()!;
                 Console.WriteLine();
 
-                if (userInput.Length > 0 && userInput.Length < 3)
+                if (userInput.Length > 0 && userInput.Length <= 3)
                 {
                     userInput = userInput.ToUpper();
                     char character = userInput[0];
                     int characterCheck = (int)character;
                     int number;
-                    string CharacterNumber = userInput.Substring(1, 1);
+                    string CharacterNumber = userInput.Substring(1);
                     if (int.TryParse(CharacterNumber, out number))
                     {
-                        if (characterCheck >= 65 && characterCheck <= 76 && number >= 0 && number <= 10)
+                        if (characterCheck >= 65 && characterCheck <= 74 && number >= 0 && number <= 10)
                         {
                             return userInput;
                         }
@@ -73,7 +107,7 @@ namespace BattleShip
             // Function body goes here
             Dictionary<string, string> gameBoard = new Dictionary<string, string>();
 
-            for (int j = 65; j <= 75; j++)
+            for (int j = 65; j <= 74; j++)
             {
                 for (int i = 0; i <= 10; i++)
                 {
@@ -94,7 +128,7 @@ namespace BattleShip
             Console.Write("\n");
 
             // Print the rows
-            for (int j = 65; j <= 75; j++)
+            for (int j = 65; j <= 74; j++)
             {
                 // Print the row label
                 Console.Write($"{Convert.ToChar(j)} ");
