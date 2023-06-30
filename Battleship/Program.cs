@@ -31,18 +31,17 @@ namespace BattleShip
             List<string> battleshipLocations = new List<string>();
             Random rand = new Random();
             int randomNumber = rand.Next(1, 11);
+            int direction = rand.Next(1,4);
+            Console.WriteLine($"Direction: {direction}");
             string randomLetter = ((char)rand.Next(65, 74)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
             //battleshipLocations.Add(location);
-            for (int i = 0; i < 4; i++)
-            {
                     for (int k = randomNumber; k <= randomNumber + 4; k++)
                     {
                         // gameBoard.Add($"{Convert.ToChar(j)}{i}", "X");
                         Console.WriteLine($"{randomLetter}{k}");
                     }
-            }
             /*for (int j = (int)randomCharacter; j <= (int)randomCharacter + 4; j++)
                 {
                     for (int k = randomNumber; k <= randomNumber + 4; k++)
