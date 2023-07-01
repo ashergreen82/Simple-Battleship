@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BattleShip
 {
@@ -38,16 +39,39 @@ namespace BattleShip
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
             //battleshipLocations.Add(location);
-            if (randomNumber + 4 > 10)
+            
+            List<string> horizontalBattleship(int randomNumber, string randomLetter)
             {
-                int numbershift = (randomNumber + 4) - 10;
-                randomNumber = randomNumber - numbershift;
+                List<string> battleshipLocation = new List<string>();
+                if (randomNumber + 4 > 10)
+                {
+                    int numbershift = (randomNumber + 4) - 10;
+                    randomNumber = randomNumber - numbershift;
+                }
+                for (int k = randomNumber; k <= randomNumber + 4; k++)
+                {
+                    battleshipLocation.Add($"{randomLetter}{randomNumber.ToString()}");
+                    Console.WriteLine($"{randomLetter}{k}");
+                }
+                return battleshipLocations;
             }
-            for (int k = randomNumber; k <= randomNumber + 4; k++)
+
+            List<string> verticalBattleship(int randomNumber, string randomLetter)
             {
-                // gameBoard.Add($"{Convert.ToChar(j)}{i}", "X");
-                Console.WriteLine($"{randomLetter}{k}");
+                List<string> battleshipLocation = new List<string>();
+                if (randomNumber + 4 > 10)
+                {
+                    int numbershift = (randomNumber + 4) - 10;
+                    randomNumber = randomNumber - numbershift;
+                }
+                for (int k = randomNumber; k <= randomNumber + 4; k++)
+                {
+                    battleshipLocation.Add($"{randomLetter}{randomNumber.ToString()}");
+                    Console.WriteLine($"{randomLetter}{k}");
+                }
+                return battleshipLocations;
             }
+
             /*for (int j = (int)randomCharacter; j <= (int)randomCharacter + 4; j++)
                 {
                     for (int k = randomNumber; k <= randomNumber + 4; k++)
@@ -57,7 +81,13 @@ namespace BattleShip
                     }
                 }*/
             // string location = randomLetter + randomNumber.ToString();
-            battleshipLocations.Add(location);
+            battleshipLocations = horizontalBattleship(randomNumber, randomLetter);
+
+            foreach (string index in battleshipLocations)
+            {
+                Console.WriteLine(index);
+            }
+
             return battleshipLocations;
         }
         
