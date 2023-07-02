@@ -31,22 +31,34 @@ namespace BattleShip
         {
             List<string> battleshipLocations = new List<string>();
             Random rand = new Random();
-            int direction = rand.Next(1, 4);
+            /*
+            In order to determine the direction of the battleship, I rendomly choose a number and that number determines the
+            direction of the battleship.  Basically a random letter and number is chosen, and then I simply sequentially add 
+            the letters and numbers in sequence to the location of the battlship string array
+            1 - Horizontal right to left
+            2 - Vertical left to right
+            3 - diagnal, left to right
+            4 - diagnal, right to left
+            */
+            // int direction = rand.Next(1, 4);
+            int direction = 2;
             Console.WriteLine($"Direction: {direction}");
+            // Here a random number is chosen
             // int randomNumber = rand.Next(1, 11);
             int randomNumber = 8;
+            // Here a random letter is chosen
             string randomLetter = ((char)rand.Next(65, 74)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
             //battleshipLocations.Add(location);
-            
+
             List<string> horizontalBattleship(int randomNumber, string randomLetter)
             {
                 List<string> battleshipLocation = new List<string>();
                 if (randomNumber + 4 > 10)
                 {
-                    int numbershift = (randomNumber + 4) - 10;
-                    randomNumber = randomNumber - numbershift;
+                    int numberShift = (randomNumber + 4) - 10;
+                    randomNumber = randomNumber - numberShift;
                 }
                 for (int k = randomNumber; k <= randomNumber + 4; k++)
                 {
@@ -59,29 +71,32 @@ namespace BattleShip
             List<string> verticalBattleship(int randomNumber, string randomLetter)
             {
                 List<string> battleshipLocation = new List<string>();
-                if (randomNumber + 4 > 10)
+                int randomLetterAscii = int.Parse(randomLetter);
+                if (randomLetterAscii + 4 > 74)
                 {
-                    int numbershift = (randomNumber + 4) - 10;
-                    randomNumber = randomNumber - numbershift;
+                    int letterShift = (randomLetterAscii + 4) - 74;
+                    randomLetterAscii = randomLetterAscii - letterShift;
+                    randomLetter = randomLetterAscii.ToString();
                 }
-                for (int k = randomNumber; k <= randomNumber + 4; k++)
+                for (int k = randomLetterAscii; k <= randomLetterAscii + 4; k++)
                 {
-                    battleshipLocation.Add($"{randomLetter}{randomNumber.ToString()}");
+                    battleshipLocation.Add($"{(randomLetterAscii.ToString())}{randomNumber.ToString()}");
                     Console.WriteLine($"{randomLetter}{k}");
                 }
                 return battleshipLocations;
             }
 
-            /*for (int j = (int)randomCharacter; j <= (int)randomCharacter + 4; j++)
-                {
-                    for (int k = randomNumber; k <= randomNumber + 4; k++)
-                    {
-                        // gameBoard.Add($"{Convert.ToChar(j)}{i}", "X");
-                        Console.WriteLine($"{Convert.ToChar(j)}{k}");
-                    }
-                }*/
             // string location = randomLetter + randomNumber.ToString();
-            battleshipLocations = horizontalBattleship(randomNumber, randomLetter);
+
+            switch(direction)
+            {
+                case 1:
+                    battleshipLocations = horizontalBattleship(randomNumber, randomLetter);
+                    break; 
+                case 2:
+                    battleshipLocations = verticalBattleship(randomNumber, randomLetter);
+                    break;
+            }
 
             foreach (string index in battleshipLocations)
             {
