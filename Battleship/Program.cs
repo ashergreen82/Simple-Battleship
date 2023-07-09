@@ -29,19 +29,19 @@ namespace BattleShip
 
         public static List<string> generateBattleshipLocation()
         {
-            List<string> battleshipLocations = new List<string>();
+            List<string> battleshipLocation = new List<string>();
             Random rand = new Random();
             /*
             In order to determine the direction of the battleship, I randomly choose a number and that number determines the
             direction of the battleship.  Basically a random letter and number is chosen, and then I simply added
             the letters and numbers in sequence to the location of the battlship string array
-            1 - Horizontal right to left
-            2 - Vertical left to right
+            1 - Horizontal
+            2 - Vertical
             3 - diagnal, left to right
             4 - diagnal, right to left
             */
             // int direction = rand.Next(1, 4);
-            int direction = 2;
+            int direction = 4;
             Console.WriteLine($"Direction: {direction}");
             // Here a random number is chosen
             // int randomNumber = rand.Next(1, 11);
@@ -51,7 +51,7 @@ namespace BattleShip
             string randomLetter = ((char)(74)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
-            //battleshipLocations.Add(location);
+            //battleshipLocation.Add(location);
 
             List<string> horizontalBattleship(int randomNumber, string randomLetter)
             {
@@ -91,25 +91,84 @@ namespace BattleShip
                 return battleshipLocation;
             }
 
+            List<string> diagnalLeftToRightBattleship(int randomNumber, string randomLetter)
+            {
+                Console.WriteLine("Diagnal Left to Right Battleship function executing");
+                List<string> battleshipLocation = new List<string>();
+                char randomLetterChar = randomLetter[0];
+                int randomLetterAscii = (int)randomLetterChar;
+                // int randomLetterAscii = int.Parse(randomLetter);
+                if (randomNumber + 4 > 10)
+                {
+                    int numberShift = (randomNumber + 4) - 10;
+                    randomNumber = randomNumber - numberShift;
+                }
+                if (randomLetterAscii + 4 > 74)
+                {
+                    int letterShift = (randomLetterAscii + 4) - 74;
+                    randomLetterAscii = randomLetterAscii - letterShift;
+                    randomLetter = randomLetterAscii.ToString();
+                }
+                for (int k = randomLetterAscii; k <= randomLetterAscii + 4; k++)
+                {
+                    battleshipLocation.Add($"{((char)k).ToString()}{randomNumber.ToString()}");
+                    Console.WriteLine($"{((char)k).ToString()}{randomNumber}");
+                    randomNumber--;
+                }
+                return battleshipLocation;
+            }
+
+            List<string> diagnalRightToLeftBattleship(int randomNumber, string randomLetter)
+            {
+                Console.WriteLine("Diagnal Right To Left Battleship function executing");
+                List<string> battleshipLocation = new List<string>();
+                char randomLetterChar = randomLetter[0];
+                int randomLetterAscii = (int)randomLetterChar;
+                // int randomLetterAscii = int.Parse(randomLetter);
+                if (randomNumber + 4 > 10)
+                {
+                    int numberShift = (randomNumber + 4) - 10;
+                    randomNumber = randomNumber - numberShift;
+                }
+                if (randomLetterAscii + 4 > 74)
+                {
+                    int letterShift = (randomLetterAscii + 4) - 74;
+                    randomLetterAscii = randomLetterAscii - letterShift;
+                    randomLetter = randomLetterAscii.ToString();
+                }
+                for (int k = randomLetterAscii; k <= randomLetterAscii + 4; k++)
+                {
+                    battleshipLocation.Add($"{((char)k).ToString()}{randomNumber.ToString()}");
+                    Console.WriteLine($"{((char)k).ToString()}{randomNumber}");
+                    randomNumber++;
+                }
+                return battleshipLocation;
+            }
             // string location = randomLetter + randomNumber.ToString();
 
-            switch(direction)
+            switch (direction)
             {
                 case 1:
-                    battleshipLocations = horizontalBattleship(randomNumber, randomLetter);
+                    battleshipLocation = horizontalBattleship(randomNumber, randomLetter);
                     break; 
                 case 2:
-                    battleshipLocations = verticalBattleship(randomNumber, randomLetter);
+                    battleshipLocation = verticalBattleship(randomNumber, randomLetter);
+                    break;
+                case 3:
+                    battleshipLocation = diagnalLeftToRightBattleship(randomNumber, randomLetter);
+                    break;
+                case 4:
+                    battleshipLocation = diagnalRightToLeftBattleship(randomNumber, randomLetter);
                     break;
             }
 
             Console.WriteLine("For each loop executing");
-            foreach (string index in battleshipLocations)
+            foreach (string index in battleshipLocation)
             {
                 Console.WriteLine($"battleshipoLocations: {index}");
             }
 
-            return battleshipLocations;
+            return battleshipLocation;
         }
         
         public static string GetUserInfo()
