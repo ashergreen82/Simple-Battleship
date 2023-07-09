@@ -32,8 +32,8 @@ namespace BattleShip
             List<string> battleshipLocations = new List<string>();
             Random rand = new Random();
             /*
-            In order to determine the direction of the battleship, I rendomly choose a number and that number determines the
-            direction of the battleship.  Basically a random letter and number is chosen, and then I simply sequentially add 
+            In order to determine the direction of the battleship, I randomly choose a number and that number determines the
+            direction of the battleship.  Basically a random letter and number is chosen, and then I simply added
             the letters and numbers in sequence to the location of the battlship string array
             1 - Horizontal right to left
             2 - Vertical left to right
@@ -47,13 +47,15 @@ namespace BattleShip
             // int randomNumber = rand.Next(1, 11);
             int randomNumber = 8;
             // Here a random letter is chosen
-            string randomLetter = ((char)rand.Next(65, 74)).ToString();
+            // string randomLetter = ((char)rand.Next(65, 74)).ToString();
+            string randomLetter = ((char)(74)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
             //battleshipLocations.Add(location);
 
             List<string> horizontalBattleship(int randomNumber, string randomLetter)
             {
+                Console.WriteLine("Horizontal Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
                 if (randomNumber + 4 > 10)
                 {
@@ -65,13 +67,16 @@ namespace BattleShip
                     battleshipLocation.Add($"{randomLetter}{randomNumber.ToString()}");
                     Console.WriteLine($"{randomLetter}{k}");
                 }
-                return battleshipLocations;
+                return battleshipLocation;
             }
 
             List<string> verticalBattleship(int randomNumber, string randomLetter)
             {
+                Console.WriteLine("Vertical Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
-                int randomLetterAscii = int.Parse(randomLetter);
+                char randomLetterChar = randomLetter[0];
+                int randomLetterAscii = (int)randomLetterChar;
+                // int randomLetterAscii = int.Parse(randomLetter);
                 if (randomLetterAscii + 4 > 74)
                 {
                     int letterShift = (randomLetterAscii + 4) - 74;
@@ -80,10 +85,10 @@ namespace BattleShip
                 }
                 for (int k = randomLetterAscii; k <= randomLetterAscii + 4; k++)
                 {
-                    battleshipLocation.Add($"{(randomLetterAscii.ToString())}{randomNumber.ToString()}");
-                    Console.WriteLine($"{randomLetter}{k}");
+                    battleshipLocation.Add($"{((char)k).ToString()}{randomNumber.ToString()}");
+                    Console.WriteLine($"{((char)k).ToString()}{randomNumber}");
                 }
-                return battleshipLocations;
+                return battleshipLocation;
             }
 
             // string location = randomLetter + randomNumber.ToString();
@@ -98,9 +103,10 @@ namespace BattleShip
                     break;
             }
 
+            Console.WriteLine("For each loop executing");
             foreach (string index in battleshipLocations)
             {
-                Console.WriteLine(index);
+                Console.WriteLine($"battleshipoLocations: {index}");
             }
 
             return battleshipLocations;
