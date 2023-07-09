@@ -24,9 +24,23 @@ namespace BattleShip
             // Ask for user input
             string userInput = GetUserInput();
             Console.WriteLine($"You entered: {userInput}");
-            
-        }
 
+            // Check the results
+            checkResults(userInput, gameBoard, battleshipLocation);
+        }
+        static void checkResults(string userInput, Dictionary<string,string>gameBoard, List<string>battleshipLocation)
+        {
+            if (battleshipLocation.Contains(userInput))
+            {
+                Console.WriteLine("Hit!");
+                gameBoard[userInput] = "H";
+            }
+            else
+            {
+                Console.WriteLine("Miss!");
+                gameBoard[userInput] = "M";
+            }
+        }
         public static List<string> generateBattleshipLocation()
         {
             List<string> battleshipLocation = new List<string>();
