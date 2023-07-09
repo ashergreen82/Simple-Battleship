@@ -251,7 +251,7 @@ namespace BattleShip
                     string CharacterNumber = userInput.Substring(1);
                     if (int.TryParse(CharacterNumber, out number))
                     {
-                        if (characterCheck >= 65 && characterCheck <= 74 && number >= 0 && number <= 10)
+                        if (characterCheck >= 65 && characterCheck <= 74 && number >= 1 && number <= 10)
                         {
                             return userInput;
                         }
