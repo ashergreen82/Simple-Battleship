@@ -40,12 +40,12 @@ namespace BattleShip
             3 - diagnal, left to right
             4 - diagnal, right to left
             */
-            // int direction = rand.Next(1, 4);
-            int direction = 3;
+            int direction = rand.Next(1, 5);
+            // int direction = 3; 
             Console.WriteLine($"Direction: {direction}");
             // Here a random number is chosen
-            // int randomNumber = rand.Next(1, 11);
-            int randomNumber = 0;
+            int randomNumber = rand.Next(1, 11);
+            // int randomNumber = 0;
             // Here a random letter is chosen
             // string randomLetter = ((char)rand.Next(65, 74)).ToString();
             string randomLetter = ((char)(65)).ToString();
@@ -190,11 +190,12 @@ namespace BattleShip
             {
                 Console.WriteLine("Hello! Welcome to Simple Battleship");
                 Console.Write("What is your name? ");
-                string userName = Console.ReadLine()!;
+                string userName = Console.ReadLine() ?? string.Empty;
                 Console.WriteLine();
 
                 if (userName.Length > 0)
                 {
+                    userName = char.ToUpper(userName[0]) + userName.Substring(1).ToLower();
                     Console.WriteLine($"Hello {userName}, let's get started");
                     return userName;
                 }
