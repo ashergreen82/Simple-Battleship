@@ -41,20 +41,22 @@ namespace BattleShip
             4 - diagnal, right to left
             */
             // int direction = rand.Next(1, 4);
-            int direction = 4;
+            int direction = 3;
             Console.WriteLine($"Direction: {direction}");
             // Here a random number is chosen
             // int randomNumber = rand.Next(1, 11);
-            int randomNumber = 8;
+            int randomNumber = 0;
             // Here a random letter is chosen
             // string randomLetter = ((char)rand.Next(65, 74)).ToString();
-            string randomLetter = ((char)(74)).ToString();
+            string randomLetter = ((char)(65)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
+            Console.WriteLine($"Initial Random Coodinates: {randomLetter}{randomNumber}");
             //battleshipLocation.Add(location);
 
             List<string> horizontalBattleship(int randomNumber, string randomLetter)
             {
+                // 1 - Horizontal
                 Console.WriteLine("Horizontal Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
                 if (randomNumber + 4 > 10)
@@ -72,6 +74,7 @@ namespace BattleShip
 
             List<string> verticalBattleship(int randomNumber, string randomLetter)
             {
+                // 2 - Vertical
                 Console.WriteLine("Vertical Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
                 char randomLetterChar = randomLetter[0];
@@ -93,11 +96,16 @@ namespace BattleShip
 
             List<string> diagnalLeftToRightBattleship(int randomNumber, string randomLetter)
             {
+                // 3 - diagnal, left to right
                 Console.WriteLine("Diagnal Left to Right Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
                 char randomLetterChar = randomLetter[0];
                 int randomLetterAscii = (int)randomLetterChar;
                 // int randomLetterAscii = int.Parse(randomLetter);
+                if (randomNumber < 4)
+                {
+                    randomNumber = 4;
+                }
                 if (randomNumber + 4 > 10)
                 {
                     int numberShift = (randomNumber + 4) - 10;
@@ -120,11 +128,16 @@ namespace BattleShip
 
             List<string> diagnalRightToLeftBattleship(int randomNumber, string randomLetter)
             {
+                // 4 - diagnal, right to left
                 Console.WriteLine("Diagnal Right To Left Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
                 char randomLetterChar = randomLetter[0];
                 int randomLetterAscii = (int)randomLetterChar;
                 // int randomLetterAscii = int.Parse(randomLetter);
+                if (randomNumber > 6)
+                {
+                    randomNumber = 6;
+                }
                 if (randomNumber + 4 > 10)
                 {
                     int numberShift = (randomNumber + 4) - 10;
