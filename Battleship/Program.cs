@@ -18,29 +18,45 @@ namespace BattleShip
             List<string> battleshipLocation = generateBattleshipLocation();
             Console.WriteLine($"This is the location of the battleship: {string.Join(", ", battleshipLocation)}");
 
-            // Display the gameboard
-            DisplayGameBoard(gameBoard);
+            int numberOfMisses = 0;
+            bool result;
 
-            // Ask for user input
-            string userInput = GetUserInput();
-            Console.WriteLine($"You entered: {userInput}");
+            do
+            {
+                // Display the gameboard
+                DisplayGameBoard(gameBoard);
 
-            // Check the results
-            checkResults(userInput, gameBoard, battleshipLocation);
+                // Ask for user input
+                string userInput = GetUserInput();
+                Console.WriteLine($"You entered: {userInput}");
+
+                // Check the results
+                result = checkResults(userInput, gameBoard, battleshipLocation);
+
+                if (!result)
+                {
+                    numberOfMisses++;
+                }
+                
+            } while (numberOfMisses < 9);
         }
-        static void checkResults(string userInput, Dictionary<string,string>gameBoard, List<string>battleshipLocation)
+
+        static bool checkResults(string userInput, Dictionary<string,string>gameBoard, List<string>battleshipLocation)
         {
             if (battleshipLocation.Contains(userInput))
             {
                 Console.WriteLine("Hit!");
                 gameBoard[userInput] = "H";
+                return true;
             }
             else
             {
                 Console.WriteLine("Miss!");
                 gameBoard[userInput] = "M";
+                return false;
             }
         }
+
         public static List<string> generateBattleshipLocation()
         {
             List<string> battleshipLocation = new List<string>();
@@ -252,7 +268,7 @@ namespace BattleShip
 
             for (int j = 65; j <= 74; j++)
             {
-                for (int i = 0; i <= 10; i++)
+                for (int i = 1; i <= 10; i++)
                 {
                     gameBoard.Add($"{Convert.ToChar(j)}{i}", "X");
                 }
@@ -264,7 +280,7 @@ namespace BattleShip
         {
             // Print the column labels
             Console.Write("  "); // Space for row labels
-            for (int i = 0; i <= 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 Console.Write($" {i} ");
             }
@@ -277,15 +293,10 @@ namespace BattleShip
                 Console.Write($"{Convert.ToChar(j)} ");
 
                 // Print the cells
-                for (int i = 0; i <= 10; i++)
+                for (int i = 1; i <= 10; i++)
                 {
-                    string key = $"{Convert.ToChar(j)}{i}";
-                    if (i >= 10)
                     {
-                        Console.Write($"  {gameBoard[key]} ");
-                    }
-                    else
-                    {
+                        string key = $"{Convert.ToChar(j)}{i}";
                         Console.Write($" {gameBoard[key]} ");
                     }
                 }
