@@ -294,13 +294,27 @@ namespace BattleShip
 
                 // Print the cells
                 for (int i = 1; i <= 10; i++)
-                {
+                {            
+                    string key = $"{Convert.ToChar(j)}{i}";
+                    string value = gameBoard[key];
+
+                    if (value == "H")
                     {
-                        string key = $"{Convert.ToChar(j)}{i}";
-                        Console.Write($" {gameBoard[key]} ");
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
+                    else if (value == "M") {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    }
+                    else
+                    {
+                        Console.ResetColor();
+                    }
+                    // Console.Write($" {gameBoard[key]} ");
+                    Console.Write($" {value} ");
+
                 }
-                Console.Write("\n"); // Move to the next line
+                Console.ResetColor();  // Reset colour at the end of each row
+                Console.Write("\n"); // Move to the next line               
             }
         }
     }
