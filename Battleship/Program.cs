@@ -18,10 +18,12 @@ namespace BattleShip
             List<string> battleshipLocation = generateBattleshipLocation();
             Console.WriteLine($"This is the location of the battleship: {string.Join(", ", battleshipLocation)}");
 
+            // Setting up key variables
             int numberOfMisses = 0;
             int numberOfHits = 0;
             bool result;
 
+            // Main game loop
             do
             {
                 // Display the gameboard
@@ -80,12 +82,12 @@ namespace BattleShip
             3 - diagnal, left to right
             4 - diagnal, right to left
             */
-            int direction = rand.Next(1, 5);
-            // int direction = 3; 
+            // int direction = rand.Next(1, 5);
+            int direction = 1; 
             Console.WriteLine($"Direction: {direction}");
             // Here a random number is chosen
-            int randomNumber = rand.Next(1, 11);
-            // int randomNumber = 0;
+            // int randomNumber = rand.Next(1, 11);
+            int randomNumber = 1;
             // Here a random letter is chosen
             // string randomLetter = ((char)rand.Next(65, 74)).ToString();
             string randomLetter = ((char)(65)).ToString();
@@ -106,7 +108,7 @@ namespace BattleShip
                 }
                 for (int k = randomNumber; k <= randomNumber + 4; k++)
                 {
-                    battleshipLocation.Add($"{randomLetter}{randomNumber.ToString()}");
+                    battleshipLocation.Add($"{randomLetter}{k.ToString()}");
                     Console.WriteLine($"{randomLetter}{k}");
                 }
                 return battleshipLocation;
@@ -329,5 +331,3 @@ namespace BattleShip
         }
     }
 }
-
-
