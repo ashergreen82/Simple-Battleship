@@ -19,6 +19,7 @@ namespace BattleShip
             Console.WriteLine($"This is the location of the battleship: {string.Join(", ", battleshipLocation)}");
 
             int numberOfMisses = 0;
+            int numberOfHits = 0;
             bool result;
 
             do
@@ -36,6 +37,15 @@ namespace BattleShip
                 if (!result)
                 {
                     numberOfMisses++;
+                }
+                else if (result)
+                {
+                    numberOfHits++;
+                    if (numberOfHits == 5)
+                    {
+                        Console.WriteLine("YOU SUNK MY BATTLESHIP!  CONGRATULATIONS!  YOU WIN!!!");
+                        break;
+                    }
                 }
                 
             } while (numberOfMisses < 9);
