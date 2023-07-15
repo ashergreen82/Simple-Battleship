@@ -48,13 +48,18 @@ namespace BattleShip
             int numberOfHits = 0;
             bool result;
 
-            // Main game loop
+            // Game loop
             do
             {
                 // Display the gameboard
                 DisplayGameBoard(gameBoard);
 
                 // Ask for user input
+                Console.WriteLine();
+                if (numberOfMisses < 8)
+                {
+                    Console.WriteLine($"You have {8 - numberOfMisses} guesses left.");
+                }
                 string userInput = GetUserInput();
                 Console.WriteLine($"You entered: {userInput}");
 
@@ -78,7 +83,6 @@ namespace BattleShip
                         break;
                     }
                 }
-                Console.WriteLine($"You have {8 - numberOfMisses} guesses left.");
 
             } while (numberOfMisses < 8);
         }
@@ -278,7 +282,6 @@ namespace BattleShip
         {
             do
             {
-                Console.WriteLine();
                 Console.Write("Please enter the Coordinates: ");
                 string userInput = Console.ReadLine()!;
                 Console.WriteLine();
