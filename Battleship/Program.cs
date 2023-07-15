@@ -39,6 +39,10 @@ namespace BattleShip
                 if (!result)
                 {
                     numberOfMisses++;
+                    if (numberOfMisses == 8)
+                    {
+                        Console.WriteLine("YOU FAILED TO SINK MY BATTLESHIP!  NICE TRY!");
+                    }
                 }
                 else if (result)
                 {
@@ -50,7 +54,7 @@ namespace BattleShip
                     }
                 }
                 
-            } while (numberOfMisses < 9);
+            } while (numberOfMisses < 8);
         }
 
         static bool checkResults(string userInput, Dictionary<string,string>gameBoard, List<string>battleshipLocation)
@@ -82,15 +86,15 @@ namespace BattleShip
             3 - diagnal, left to right
             4 - diagnal, right to left
             */
-            // int direction = rand.Next(1, 5);
-            int direction = 1; 
+            int direction = rand.Next(1, 5);
+            // int direction = 3; 
             Console.WriteLine($"Direction: {direction}");
             // Here a random number is chosen
-            // int randomNumber = rand.Next(1, 11);
-            int randomNumber = 1;
+            int randomNumber = rand.Next(1, 11);
+            // int randomNumber = 1;
             // Here a random letter is chosen
-            // string randomLetter = ((char)rand.Next(65, 74)).ToString();
-            string randomLetter = ((char)(65)).ToString();
+            string randomLetter = ((char)rand.Next(65, 74)).ToString();
+            // string randomLetter = ((char)(70)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
             Console.WriteLine($"Initial Random Coodinates: {randomLetter}{randomNumber}");
@@ -144,9 +148,9 @@ namespace BattleShip
                 char randomLetterChar = randomLetter[0];
                 int randomLetterAscii = (int)randomLetterChar;
                 // int randomLetterAscii = int.Parse(randomLetter);
-                if (randomNumber < 4)
+                if (randomNumber < 5)
                 {
-                    randomNumber = 4;
+                    randomNumber = 5;
                 }
                 if (randomNumber + 4 > 10)
                 {
