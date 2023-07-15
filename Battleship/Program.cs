@@ -57,7 +57,15 @@ namespace BattleShip
 
                 // Ask for user input
                 Console.WriteLine();
-                if (numberOfMisses < 8)
+                if (numberOfMisses >= 5)
+                {
+                    Console.Write("You have ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(8 - numberOfMisses);
+                    Console.ResetColor();
+                    Console.WriteLine(" guesses left.");
+                }
+                else if (numberOfMisses < 5)
                 {
                     Console.WriteLine($"You have {8 - numberOfMisses} guesses left.");
                 }
@@ -280,6 +288,7 @@ namespace BattleShip
             
         }
         public static string GetUserInput()
+        
         {
             do
             {
