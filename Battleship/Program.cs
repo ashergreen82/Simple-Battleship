@@ -12,6 +12,7 @@ namespace BattleShip
             string userName = GetUserInfo();
 
             // Main game loop
+            Console.Clear();
             string gameContinue = "Y";
             do
             {               
