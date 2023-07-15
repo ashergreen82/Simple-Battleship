@@ -11,6 +11,31 @@ namespace BattleShip
             // Introduction and getting the user info
             string userName = GetUserInfo();
 
+            // Main game loop
+            string gameContinue = "Y";
+            do
+            {               
+                mainGameLoop(userName);
+                Console.WriteLine();
+                Console.Write("Would you like to play again [Y/N]? ");
+                char userInputChar = Console.ReadKey().KeyChar;
+                string userInput = userInputChar.ToString().ToUpper();
+                Console.WriteLine();
+
+                if (userInput == "N")
+                {
+                    gameContinue = "N";
+                }
+
+                Console.WriteLine();
+                Console.Write("Thank you for playing Battleship with me!");
+                Console.WriteLine();
+                Console.WriteLine("Have a great day.");
+            } while (gameContinue == "Y");
+        }
+
+        static void mainGameLoop(string args)
+        {
             // Setup the playing board
             Dictionary<string, string> gameBoard = GameBoardSetup();
 
@@ -53,10 +78,10 @@ namespace BattleShip
                         break;
                     }
                 }
-                
+                Console.WriteLine($"You have {8 - numberOfMisses} guesses left.");
+
             } while (numberOfMisses < 8);
         }
-
         static bool checkResults(string userInput, Dictionary<string,string>gameBoard, List<string>battleshipLocation)
         {
             if (battleshipLocation.Contains(userInput))
