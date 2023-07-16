@@ -5,7 +5,7 @@
 You can run the program from [here](https://replit.com/@AsherGreen/Simple-Battleship-1).
 <br /><br />
 
-![screenshot](Battleship Screenshot.png)
+![screenshot](battleship_screenshot.png)
 ![screenshot](Screenshot3.png)
 
 ## **Summary**
