@@ -81,6 +81,7 @@ namespace BattleShip
                     if (numberOfMisses == 8)
                     {
                         Console.WriteLine("YOU FAILED TO SINK MY BATTLESHIP!  NICE TRY!");
+                        Console.WriteLine($"The Battleship was located here: {string.Join(", ", battleshipLocation)}");
                     }
                 }
                 else if (result)
@@ -272,7 +273,14 @@ namespace BattleShip
         {
             do
             {
-                Console.WriteLine("Hello! Welcome to Simple Battleship");
+                Console.WriteLine("Hello! Welcome to The Simple Battleship game");
+                Console.WriteLine();
+                Console.WriteLine("Your goal to find and destroy my Battleship.");
+                Console.WriteLine("Just enter in the coodinates to where you think the battleship is located.");
+                Console.WriteLine("To enter the coodinates in, you enter in the first letter and then the number");
+                Console.WriteLine("of where you think it is located on the grid.");
+                Console.WriteLine("You will be allowed 8 chances to find the ship.");
+                Console.WriteLine();
                 Console.Write("What is your name? ");
                 string userName = Console.ReadLine() ?? string.Empty;
                 Console.WriteLine();
@@ -332,6 +340,7 @@ namespace BattleShip
 
         public static void DisplayGameBoard(Dictionary<string, string> gameBoard)
         {
+            Console.Clear();
             // Print the column labels
             Console.Write("  "); // Space for row labels
             for (int i = 1; i <= 10; i++)
