@@ -126,23 +126,18 @@ namespace BattleShip
             4 - diagnal, right to left
             */
             int direction = rand.Next(1, 5);
-            // int direction = 3; 
-            Console.WriteLine($"Direction: {direction}");
             // Here a random number is chosen
             int randomNumber = rand.Next(1, 11);
-            // int randomNumber = 1;
             // Here a random letter is chosen
             string randomLetter = ((char)rand.Next(65, 74)).ToString();
             // string randomLetter = ((char)(70)).ToString();
             char randomCharacter = randomLetter[0];
             string location = randomLetter + randomNumber.ToString();
-            Console.WriteLine($"Initial Random Coodinates: {randomLetter}{randomNumber}");
             //battleshipLocation.Add(location);
 
             List<string> horizontalBattleship(int randomNumber, string randomLetter)
             {
                 // 1 - Horizontal
-                Console.WriteLine("Horizontal Battleship function executing");
                 List<string> battleshipLocation = new List<string>();
                 if (randomNumber + 4 > 10)
                 {
@@ -152,7 +147,6 @@ namespace BattleShip
                 for (int k = randomNumber; k <= randomNumber + 4; k++)
                 {
                     battleshipLocation.Add($"{randomLetter}{k.ToString()}");
-                    Console.WriteLine($"{randomLetter}{k}");
                 }
                 return battleshipLocation;
             }
@@ -164,7 +158,6 @@ namespace BattleShip
                 List<string> battleshipLocation = new List<string>();
                 char randomLetterChar = randomLetter[0];
                 int randomLetterAscii = (int)randomLetterChar;
-                // int randomLetterAscii = int.Parse(randomLetter);
                 if (randomLetterAscii + 4 > 74)
                 {
                     int letterShift = (randomLetterAscii + 4) - 74;
