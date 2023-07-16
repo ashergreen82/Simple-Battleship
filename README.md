@@ -11,7 +11,9 @@ You can run the program from [here](https://replit.com/@AsherGreen/Simple-Battle
 
 ## **Summary**
 
-I created this game to learn C#.  
+I created this game to learn C#.
+
+To Run the game, just click ont he play button and the game will execute.
 
 #### **Author**
 
