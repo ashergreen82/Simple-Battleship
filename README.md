@@ -2,10 +2,10 @@
 
 *A basic group chat app written in Javascript, HTML, CSS, and Python, using PostgreSQL database*
 
-You can run the program from [here](https://chatapp-fdyf.onrender.com).
+You can run the program from [here](https://replit.com/@AsherGreen/Simple-Battleship-1).
 <br /><br />
 
-![screenshot](login_screenshot.png)
+![screenshot](Battleship Screenshot.png)
 ![screenshot](Screenshot3.png)
 
 ## **Summary**
